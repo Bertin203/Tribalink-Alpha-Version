@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
+/* Base styles for desktop */
+* {
+    font-family: 'Inconsolata', monospace;
+}
+
+body {
+    background-image: url(../images/6501483.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 11%;
+    color: #000000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cards-catalog {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px; 
+    height: 100vh; 
+    margin: 20px;
+}
+
+.card:hover {
+    box-shadow: 5px 5px 10px rgb(43, 26, 26); 
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.pinpoint {
+    width: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+#capa {
+    height: 200px;
+}
+
+/* Media Queries for Responsive Design */
+
+/* For tablets in portrait mode and small screens */
+@media (max-width: 768px) {
+    .cards-catalog {
+        gap: 30px; 
+        margin: 10px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 300px; /* Adjust max-width as needed */
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+    .cards-catalog {
+        gap: 20px; 
+        margin: 5px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 250px; /* Adjust max-width as needed */
+    }
+
+    #capa {
+        height: 150px;
+    }
+}

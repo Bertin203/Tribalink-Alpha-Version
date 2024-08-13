@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra Velha</title>
+    <link rel="stylesheet" href="/public/css/tha-fene.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <h1 id="title">Barra Velha</h1>
+
+    <div class="info">
+        <img id="thafene" src="../public/images/imgBarra-Velha.jpg" alt="Aldeia Velha">
+        <div class="buttons-container">
+            <p class="justificado">
+                Os Pataxó vivem em diversas aldeias no extremo sul do Estado da Bahia e norte de Minas Gerais.<br>
+                Há evidências de que a aldeia de Barra Velha existe há quase dois séculos e meio, desde 1767 (veja Histórico da ocupação). 
+                Em contato com os não índios desde o século XVI e muitas vezes obrigados a esconder seus costumes, 
+                os Pataxó hoje se esforçam para avivar sua língua Patxohã e rituais "dos antigos" como o Awê.
+            </p>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        let map;
+
+        // Definição das propriedades
+        const latitude = -16.84498554723923;
+        const longitude = -39.27653491694678;
+
+        // Função para renderizar o mapa
+        function renderMap(coordinates) {
+            // Verifica se o mapa já foi criado, se sim, move a visualização
+            if (map) {
+                map.setView(coordinates, 14);
+            } else {
+                // Cria o mapa
+                map = L.map('map').setView(coordinates, 13);
+                // Adiciona a camada do mapa
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+            }
+            // Adiciona um marcador no mapa
+            L.marker(coordinates).addTo(map)
+                .bindPopup('Barra Velha Caraíva Porto Seguro - BA45810-000')
+                .openPopup();
+        }
+
+        // Renderiza o mapa assim que a página carrega
+        window.onload = function() {
+            renderMap([latitude, longitude]);
+        };
+    </script>
+</body>
+</html>

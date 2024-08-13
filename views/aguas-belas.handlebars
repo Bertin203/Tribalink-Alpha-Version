@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Indígena Águas Belas</title>
+    <link rel="stylesheet" href="/public/css/tha-fene.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <h1 id="title">Reserva Indígena Águas Belas</h1>
+
+    <div class="info">
+        <img id="thafene" src="../public/images/imgAguas-Belas.jpg" alt="Reserva Indígena Águas Belas">
+        <div class="buttons-container">
+            <p class="justificado">
+                A Terra Indígena de Águas Belas é uma terra indígena localizada no sul do estado da Bahia. 
+                Ocupa uma área de 1.208,50 ha no município de Prado. As terras foram homologadas em 1998. 
+                No ano de 2010 sua população era de 228 índios pataxós.
+
+            </p>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        let map;
+
+        // Definição das propriedades
+        const latitude = -16.924583546925366;
+        const longitude = -39.27702487658548;
+
+        // Função para renderizar o mapa
+        function renderMap(coordinates) {
+            // Verifica se o mapa já foi criado, se sim, move a visualização
+            if (map) {
+                map.setView(coordinates, 14);
+            } else {
+                // Cria o mapa
+                map = L.map('map').setView(coordinates, 13);
+                // Adiciona a camada do mapa
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+            }
+            // Adiciona um marcador no mapa
+            L.marker(coordinates).addTo(map)
+                .bindPopup('Reserva Indígena Águas Belas Cumuruxatiba Prado - BA 45980-000')
+                .openPopup();
+        }
+
+        // Renderiza o mapa assim que a página carrega
+        window.onload = function() {
+            renderMap([latitude, longitude]);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aldeia Velha</title>
+    <link rel="stylesheet" href="/public/css/tha-fene.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <h1 id="title">Aldeia Velha</h1>
+
+    <div class="info">
+        <img id="thafene" src="../public/images/imgAldeia-Velha.jpg" alt="Aldeia Velha">
+        <div class="buttons-container">
+            <p class="justificado">
+                A aldeia está localizada na Reserva Indígena Pataxó da Aldeia Velha, no Arraial d'Ajuda, distrito do município de Porto Seguro. 
+                O grupo que compõe a Aldeia é relativamente recente, e foi formado por indígenas desaldeados que habitavam nos arredores de Arraial d’Ajuda, 
+                Trancoso e outras regiões de Porto Seguro, onde iniciaram o processo de retomada do território na década de 90.
+                <br>
+                <br>
+                O nome Aldeia Velha foi dado pelo cacique Ipê (fundador da aldeia), e durante essa retomada, escolheu esse nome devido aos vestígios encontrados na terra, 
+                que comprovaram que o território era habitado por indígenas há muito tempo, e era um lugar de encontros de várias etnias, tais como: Tupiniquins, Botocudos, Maxacalis, 
+                Patatiba, Tupimabá, Tapuia, Camacã, entre outros, relatos que foram confirmados e comprovados por vários antropólogos.
+
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        let map;
+
+        // Definição das propriedades
+        const latitude = -16.47147576980708;
+        const longitude = -39.08119451376766;
+
+        // Função para renderizar o mapa
+        function renderMap(coordinates) {
+            // Verifica se o mapa já foi criado, se sim, move a visualização
+            if (map) {
+                map.setView(coordinates, 14);
+            } else {
+                // Cria o mapa
+                map = L.map('map').setView(coordinates, 13);
+                // Adiciona a camada do mapa
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+            }
+            // Adiciona um marcador no mapa
+            L.marker(coordinates).addTo(map)
+                .bindPopup(' Aldeia Velha Pataxó, Zona Rural - Arraial d´Ajuda, Porto Seguro - BA, 45816-000')
+                .openPopup();
+        }
+
+        // Renderiza o mapa assim que a página carrega
+        window.onload = function() {
+            renderMap([latitude, longitude]);
+        };
+    </script>
+</body>
+</html>

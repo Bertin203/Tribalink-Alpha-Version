@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mata Medonha</title>
+    <link rel="stylesheet" href="/public/css/tha-fene.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <h1 id="title">Mata Medonha</h1>
+
+    <div class="info">
+        <img id="thafene" src="../public/images/imgMata-Medonha.jpg" alt="Tha-Fene">
+        <div class="buttons-container">
+            <p class="justificado">
+                A Terra Indígena Mata Medonha é uma terra indígena localizada no sul do estado da Bahia. 
+                Ocupa uma área de 549 ha no município de Santa Cruz Cabrália. As terras ainda não foram homologadas e em 2010 eram habitadas por 194 indígenas da etnia Pataxó.
+            </p>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        let map;
+
+        // Definição das propriedades
+        const latitude = -16.155996491194188;
+        const longitude = -39.00795576100987;
+
+        // Função para renderizar o mapa
+        function renderMap(coordinates) {
+            // Verifica se o mapa já foi criado, se sim, move a visualização
+            if (map) {
+                map.setView(coordinates, 14);
+            } else {
+                // Cria o mapa
+                map = L.map('map').setView(coordinates, 13);
+                // Adiciona a camada do mapa
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+            }
+            // Adiciona um marcador no mapa
+            L.marker(coordinates).addTo(map)
+                .bindPopup('Mata Medonha Santa Cruz Cabrália - BA 45807-000')
+                .openPopup();
+        }
+
+        // Atualiza o mapa assim que a página carrega
+        window.onload = function() {
+            renderMap([latitude, longitude]);
+        };
+    </script>
+</body>
+</html>
